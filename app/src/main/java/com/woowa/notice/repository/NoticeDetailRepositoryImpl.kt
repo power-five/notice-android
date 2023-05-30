@@ -10,4 +10,8 @@ class NoticeDetailRepositoryImpl : NoticeDetailRepository {
     ): Notice {
         TODO("Not yet implemented")
     }
+
+    override fun deleteNotice(id: Long, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        TODO("Not yet implemented")
+    }
 }

@@ -9,5 +9,6 @@ interface NoticeDetailContract {
 
     interface Presenter {
         fun fetchNoticeDetail(id: Long)
+        fun deleteNotice(id: Long)
     }
 }

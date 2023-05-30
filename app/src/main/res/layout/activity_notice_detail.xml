@@ -88,6 +88,7 @@
             android:text="@string/tv_remove"
             android:textColor="@color/white"
             android:textSize="12sp"
+            android:onClick="@{() -> listener.onNoticeDeleteClick(notice.noticeId)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_update" />
 

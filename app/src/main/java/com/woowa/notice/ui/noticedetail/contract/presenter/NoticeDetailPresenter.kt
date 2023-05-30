@@ -16,4 +16,12 @@ class NoticeDetailPresenter(
             onFailure = {},
         )
     }
+
+    override fun deleteNotice(id: Long) {
+        repository.deleteNotice(
+            id,
+            onSuccess = { },
+            onFailure = { },
+        )
+    }
 }

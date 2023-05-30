@@ -10,7 +10,7 @@ import com.woowa.notice.ui.noticedetail.contract.NoticeDetailContract
 import com.woowa.notice.ui.noticedetail.contract.presenter.NoticeDetailPresenter
 import com.woowa.notice.uimodel.NoticeUIModel
 
-class NoticeDetailActivity : AppCompatActivity(), NoticeDetailContract.View, NoticeDetailListener{
+class NoticeDetailActivity : AppCompatActivity(), NoticeDetailContract.View, NoticeDetailListener {
     private lateinit var binding: ActivityNoticeDetailBinding
     private val presenter by lazy { NoticeDetailPresenter(this, NoticeDetailRepositoryImpl()) }
 
@@ -31,7 +31,12 @@ class NoticeDetailActivity : AppCompatActivity(), NoticeDetailContract.View, Not
         binding.rvNoticeImg.adapter = NoticeImageAdapter(images)
     }
     override fun onNoticeChangeClick(id: Long) {
-        //startActivity(NoticeChangeActivity.newIntent(this, id))
+        // startActivity(NoticeChangeActivity.newIntent(this, id))
+    }
+
+    override fun onNoticeDeleteClick(id: Long) {
+        presenter.deleteNotice(id)
+        finish()
     }
 
     companion object {
