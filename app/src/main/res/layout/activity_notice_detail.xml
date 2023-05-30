@@ -8,6 +8,10 @@
         <variable
             name="notice"
             type="com.woowa.notice.uimodel.NoticeUIModel" />
+
+        <variable
+            name="listener"
+            type="com.woowa.notice.ui.noticedetail.NoticeDetailListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,20 +71,21 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/tv_border_radius"
             android:gravity="center"
-            android:text="수정"
+            android:text="@string/tv_update"
+            android:onClick="@{() -> listener.onNoticeChangeClick(notice.noticeId)}"
             android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintEnd_toStartOf="@+id/tv_remove"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tv_remove"
             android:layout_width="45dp"
             android:layout_height="30dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/tv_border_radius"
             android:gravity="center"
-            android:text="삭제"
+            android:text="@string/tv_remove"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
