@@ -1,4 +1,5 @@
-package com.woowa.notice.uimodel
+import com.woowa.notice.uimodel.ImageUIModel
+import com.woowa.notice.uimodel.WriterUIModel
 
 data class NoticeUIModel(
     val noticeId: Long,
