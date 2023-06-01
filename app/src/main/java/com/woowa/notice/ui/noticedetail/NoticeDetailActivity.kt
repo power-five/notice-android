@@ -21,7 +21,7 @@ class NoticeDetailActivity : AppCompatActivity(), NoticeDetailContract.View, Not
         setContentView(binding.root)
 
         presenter = NoticeDetailPresenter(this, NoticeDetailRepositoryImpl())
-        presenter.fetchNoticeDetail(1)
+        presenter.fetchNoticeDetail(intent.getLongExtra(KEY_NOTICE_ID, 0))
     }
 
     override fun setNoticeDetail(notice: NoticeUIModel) {
@@ -42,7 +42,7 @@ class NoticeDetailActivity : AppCompatActivity(), NoticeDetailContract.View, Not
     }
 
     companion object {
-        const val KEY_NOTICE_ID = "notice_id"
+        private const val KEY_NOTICE_ID = "notice_id"
         fun newIntent(context: Context, noticeId: Long): Intent {
             return Intent(context, NoticeDetailActivity::class.java).apply {
                 putExtra(KEY_NOTICE_ID, noticeId)
