@@ -20,15 +20,9 @@ class NoticeListPresenter(
                     image = "https://mblogthumb-phinf.pstatic.net/MjAyMDA4MThfMTky/MDAxNTk3NjgyMTM4NTcy.5HceBl98We4er9BqSFRETcdKc4SU7gc-XMWxg_vLIT4g.TmmA3JVnDPtrqm9yOlg3SzseeRiYBHgBkYJU-gMZSXog.JPEG.clcl4423/1597682137730.jpg?type=w800",
                 ),
                 images = listOf(
-<<<<<<< HEAD
-                    "https://file2.nocutnews.co.kr/newsroom/image/2015/08/21/20150821223000718087.jpg",
-                ),
-                createdAt = LocalDateTime.of(2023, 5, 30, 21, 33),
-=======
                     ImageUIModel("https://file2.nocutnews.co.kr/newsroom/image/2015/08/21/20150821223000718087.jpg"),
                 ),
                 createdAt = LocalDateTime.of(2023, 5, 30, 21, 33).toString(),
->>>>>>> upstream/main
             )
         }
 
