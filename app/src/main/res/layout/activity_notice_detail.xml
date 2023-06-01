@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="notice"
+            type="com.woowa.notice.uimodel.NoticeUIModel" />
+
+        <variable
+            name="listener"
+            type="com.woowa.notice.ui.noticedetail.NoticeDetailListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/tv_detail"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#297563"
+            android:gravity="center"
+            android:text="글 상세보기"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="168dp" />
+
+        <ImageView
+            android:id="@+id/iv_writer_img"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:scaleType="fitCenter"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail" />
+
+        <TextView
+            android:id="@+id/tv_writer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/iv_writer_img"
+            app:layout_constraintTop_toTopOf="@+id/iv_writer_img"
+            tools:text="레아" />
+
+        <TextView
+            android:id="@+id/tv_notice_created_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_writer_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_writer_name"
+            tools:text="2023/05/07 12:00" />
+
+        <TextView
+            android:id="@+id/tv_update"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/tv_border_radius"
+            android:gravity="center"
+            android:text="@string/tv_update"
+            android:onClick="@{() -> listener.onNoticeChangeClick(notice.noticeId)}"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_remove"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail" />
+
+        <TextView
+            android:id="@+id/tv_remove"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/tv_border_radius"
+            android:gravity="center"
+            android:text="@string/tv_remove"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:onClick="@{() -> listener.onNoticeDeleteClick(notice.noticeId)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_update" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_writer_img">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_notice_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/black"
+                    android:textSize="23sp"
+                    android:textStyle="bold"
+                    app:NoticeBinding="@{notice.title}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="이번 주 코수타 공지입니다." />
+
+                <TextView
+                    android:id="@+id/tv_notice_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:NoticeBinding="@{notice.description}"
+                    app:layout_constraintStart_toStartOf="@+id/tv_notice_title"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_notice_title"
+                    tools:text="와서 보고 싶은 사람 신청하세요 ㅎㅎ 로로로로로롤로가나다라마바사 아자차카타파하 후이후이야야야헤이헤이호호허" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_notice_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_notice_description"
+                    tools:listitem="@layout/item_notice_img" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

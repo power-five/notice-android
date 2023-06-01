@@ -1,6 +1,7 @@
 package com.woowa.notice.dto
 
 import com.google.gson.annotations.SerializedName
+import java.time.LocalDateTime
 
 data class NoticeDTO(
     @SerializedName("noticeId")
@@ -14,5 +15,5 @@ data class NoticeDTO(
     @SerializedName("images")
     val images: List<String>,
     @SerializedName("createdAt")
-    val createdAt: String,
+    val createdAt: LocalDateTime,
 )
