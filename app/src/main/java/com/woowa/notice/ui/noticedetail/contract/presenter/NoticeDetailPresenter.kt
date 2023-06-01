@@ -11,7 +11,7 @@ class NoticeDetailPresenter(
 
     override fun fetchNoticeDetail(id: Long) {
         repository.getNotice(
-            1,
+            id,
             onSuccess = {
                 view.setNoticeDetail(it.toUIModel())
             },

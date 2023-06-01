@@ -16,7 +16,7 @@ class NoticeWritingPresenter(
 ) : NoticeWritingContract.Presenter {
     private var isExistArticle: Boolean = false
     private lateinit var existArticle: ExistArticle
-    private lateinit var images: MutableList<ImageUIModel>
+    private var images = emptyList<ImageUIModel>().toMutableList()
 
     override fun submitPost(id: Long, title: String, description: String) {
         if (isExistArticle) {
@@ -39,7 +39,13 @@ class NoticeWritingPresenter(
         }
     }
 
-    override fun submitPhoto() {
+    override fun addPhoto(url: String) {
+        if(images.size >= 10) {
+            view.showImpossibleToAddImageToast()
+            return
+        }
+        images.add(ImageUIModel(url))
+        view.updateImageView(images.toList())
     }
 
     override fun removePhoto(image: ImageUIModel) {

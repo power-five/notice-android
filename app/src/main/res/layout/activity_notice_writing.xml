@@ -127,6 +127,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
+                android:id="@+id/iv_image_add_button"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/ic_camera"

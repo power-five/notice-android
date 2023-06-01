@@ -2,8 +2,11 @@ package com.woowa.notice.ui.noticewriting
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.woowa.notice.databinding.ActivityNoticeWritingBinding
 import com.woowa.notice.repository.NoticeDetailRepositoryImpl
 import com.woowa.notice.repository.NoticeWritingRepositoryImpl
@@ -16,12 +19,21 @@ class NoticeWritingActivity : AppCompatActivity(), NoticeWritingContract.View {
     private lateinit var adapter: NoticeWritingAdapter
     private var noticeId: Long = -1
 
+    private val galleryLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            val inputStream = contentResolver.openInputStream(uri!!)
+            inputStream?.close()
+            presenter.addPhoto(uri.toString())
+        }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNoticeWritingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initPresenter()
+        initAdapter()
         initView()
         initButtonListener()
     }
@@ -32,6 +44,18 @@ class NoticeWritingActivity : AppCompatActivity(), NoticeWritingContract.View {
             noticeDetailRepository = NoticeDetailRepositoryImpl(),
             noticeWritingRepository = NoticeWritingRepositoryImpl()
         )
+    }
+
+    private fun initAdapter() {
+        adapter = NoticeWritingAdapter(
+            images = emptyList(),
+            noticeWritingClickListener = object : NoticeWritingClickListener {
+                override fun onClickRemove(imageUIModel: ImageUIModel) {
+                    presenter.removePhoto(imageUIModel)
+                }
+            }
+        )
+        binding.rvImagePreviews.adapter = adapter
     }
 
     private fun initView() {
@@ -55,25 +79,23 @@ class NoticeWritingActivity : AppCompatActivity(), NoticeWritingContract.View {
         binding.ivCancelButton.setOnClickListener {
             finish()
         }
+        binding.ivImageAddButton.setOnClickListener {
+            galleryLauncher.launch("image/*")
+        }
     }
 
     override fun setViewContents(article: ExistArticleUIModel) {
-        adapter = NoticeWritingAdapter(
-            images = article.images,
-            noticeWritingClickListener = object : NoticeWritingClickListener {
-                override fun onClickRemove(imageUIModel: ImageUIModel) {
-                    presenter.removePhoto(imageUIModel)
-                }
-            }
-        )
-
-        binding.rvImagePreviews.adapter = adapter
+        adapter.update(article.images)
         binding.etTitle.setText(article.title)
         binding.etDescription.setText(article.description)
     }
 
     override fun updateImageView(images: List<ImageUIModel>) {
         adapter.update(images)
+    }
+
+    override fun showImpossibleToAddImageToast() {
+        Toast.makeText(this, "사진은 최대 10장까지 첨부 가능합니다.", LENGTH_SHORT).show()
     }
 
     companion object {
