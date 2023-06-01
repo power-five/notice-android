@@ -11,8 +11,10 @@ class NoticeDetailPresenter(
 
     override fun fetchNoticeDetail(id: Long) {
         repository.getNotice(
-            id,
-            onSuccess = { view.setNoticeDetail(it.toUIModel()) },
+            1,
+            onSuccess = {
+                view.setNoticeDetail(it.toUIModel())
+            },
             onFailure = { throw IllegalArgumentException("상세보기를 실패했습니다.") },
         )
     }

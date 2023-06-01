@@ -8,18 +8,20 @@ import com.woowa.notice.databinding.ActivityNoticeDetailBinding
 import com.woowa.notice.repository.NoticeDetailRepositoryImpl
 import com.woowa.notice.ui.noticedetail.contract.NoticeDetailContract
 import com.woowa.notice.ui.noticedetail.contract.presenter.NoticeDetailPresenter
+import com.woowa.notice.uimodel.ImageUIModel
 import com.woowa.notice.uimodel.NoticeUIModel
 
 class NoticeDetailActivity : AppCompatActivity(), NoticeDetailContract.View, NoticeDetailListener {
     private lateinit var binding: ActivityNoticeDetailBinding
-    private val presenter by lazy { NoticeDetailPresenter(this, NoticeDetailRepositoryImpl()) }
+    private lateinit var presenter: NoticeDetailContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNoticeDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter.fetchNoticeDetail(intent.getLongExtra(KEY_NOTICE_ID, 0))
+        presenter = NoticeDetailPresenter(this, NoticeDetailRepositoryImpl())
+        presenter.fetchNoticeDetail(1)
     }
 
     override fun setNoticeDetail(notice: NoticeUIModel) {
@@ -27,7 +29,7 @@ class NoticeDetailActivity : AppCompatActivity(), NoticeDetailContract.View, Not
         setNoticeImages(notice.images)
     }
 
-    private fun setNoticeImages(images: List<String>) {
+    private fun setNoticeImages(images: List<ImageUIModel>) {
         binding.rvNoticeImg.adapter = NoticeImageAdapter(images)
     }
     override fun onNoticeChangeClick(id: Long) {

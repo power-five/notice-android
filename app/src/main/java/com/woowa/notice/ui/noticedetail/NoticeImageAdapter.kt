@@ -3,8 +3,9 @@ package com.woowa.notice.ui.noticedetail
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.woowa.notice.ui.noticedetail.viewholder.NoticeImageViewHolder
+import com.woowa.notice.uimodel.ImageUIModel
 
-class NoticeImageAdapter(private val images: List<String>) :
+class NoticeImageAdapter(private val images: List<ImageUIModel>) :
     RecyclerView.Adapter<NoticeImageViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
