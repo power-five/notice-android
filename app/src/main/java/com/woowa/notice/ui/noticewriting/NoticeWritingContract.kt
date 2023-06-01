@@ -1,15 +1,15 @@
 package com.woowa.notice.ui.noticewriting
 
-import com.woowa.notice.uimodel.NoticeUIModel
+import com.woowa.notice.uimodel.ExistArticleUIModel
 
 interface NoticeWritingContract {
     interface Presenter {
-        fun submitPost()
+        fun submitPost(id: Long, title: String, description: String)
         fun submitPhoto()
         fun loadPost(id: Long)
     }
 
     interface View {
-        fun setViewContents(notice: NoticeUIModel)
+        fun setViewContents(article: ExistArticleUIModel)
     }
 }
