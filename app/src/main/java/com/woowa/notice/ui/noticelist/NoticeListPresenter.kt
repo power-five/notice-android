@@ -1,7 +1,7 @@
 package com.woowa.notice.ui.noticelist
 
-import com.woowa.notice.uimodel.NoticeUiModel
-import com.woowa.notice.uimodel.WriterUiModel
+import com.woowa.notice.uimodel.NoticeUIModel
+import com.woowa.notice.uimodel.WriterUIModel
 import java.time.LocalDateTime
 
 class NoticeListPresenter(
@@ -10,11 +10,11 @@ class NoticeListPresenter(
     override fun getNoticeList() {
         val noticeItems = List(30) { it ->
             val index = it + 1
-            NoticeUiModel(
+            NoticeUIModel(
                 noticeId = index.toLong(),
                 title = "$index: 여러분 ~ 안녕하세요 ~",
                 description = "근로 근로 ~~~",
-                writer = WriterUiModel(
+                writer = WriterUIModel(
                     nickname = "하티",
                     image = "https://mblogthumb-phinf.pstatic.net/MjAyMDA4MThfMTky/MDAxNTk3NjgyMTM4NTcy.5HceBl98We4er9BqSFRETcdKc4SU7gc-XMWxg_vLIT4g.TmmA3JVnDPtrqm9yOlg3SzseeRiYBHgBkYJU-gMZSXog.JPEG.clcl4423/1597682137730.jpg?type=w800",
                 ),

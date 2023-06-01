@@ -1,6 +1,6 @@
 package com.woowa.notice.uimodel
 
-data class WriterUiModel(
+data class WriterUIModel(
     val nickname: String,
     val image: String,
 )

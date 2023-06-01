@@ -7,7 +7,7 @@
 
         <variable
             name="notice"
-            type="com.woowa.notice.uimodel.NoticeUiModel" />
+            type="com.woowa.notice.uimodel.NoticeUIModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

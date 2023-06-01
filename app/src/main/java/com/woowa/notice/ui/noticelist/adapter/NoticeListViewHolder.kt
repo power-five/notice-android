@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.woowa.notice.R
 import com.woowa.notice.databinding.ItemNoticeBinding
-import com.woowa.notice.uimodel.NoticeUiModel
+import com.woowa.notice.uimodel.NoticeUIModel
 
 class NoticeListViewHolder(
     parent: ViewGroup,
@@ -14,7 +14,7 @@ class NoticeListViewHolder(
 ) {
     private val binding = ItemNoticeBinding.bind(itemView)
 
-    fun onBind(noticeItem: NoticeUiModel) {
+    fun onBind(noticeItem: NoticeUIModel) {
         binding.notice = noticeItem
     }
 }
