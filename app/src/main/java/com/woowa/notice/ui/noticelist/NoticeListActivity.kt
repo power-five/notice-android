@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.woowa.notice.databinding.ActivityNoticeListBinding
+import com.woowa.notice.ui.noticedetail.NoticeDetailActivity
 import com.woowa.notice.ui.noticelist.adapter.NoticeListAdapter
 import com.woowa.notice.uimodel.NoticeUIModel
 
@@ -27,7 +28,9 @@ class NoticeListActivity : AppCompatActivity(), NoticeListContract.View {
     }
 
     override fun initRecyclerView(noticeItems: List<NoticeUIModel>) {
-        binding.rvNoticeList.adapter = NoticeListAdapter(noticeItems)
+        binding.rvNoticeList.adapter = NoticeListAdapter(noticeItems) { id ->
+            showNoticeDetail(id)
+        }
     }
 
     private fun initNoticeList() {
@@ -46,5 +49,11 @@ class NoticeListActivity : AppCompatActivity(), NoticeListContract.View {
         binding.rvNoticeList.addItemDecoration(
             DividerItemDecoration(this, LinearLayoutManager.VERTICAL),
         )
+    }
+
+
+    private fun showNoticeDetail(id: Long) {
+        val intent = NoticeDetailActivity.newIntent(this, id)
+        startActivity(intent)
     }
 }

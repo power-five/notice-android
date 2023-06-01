@@ -9,10 +9,15 @@ import com.woowa.notice.uimodel.NoticeUIModel
 
 class NoticeListViewHolder(
     parent: ViewGroup,
+    onItemClick: (Int) -> Unit,
 ) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.item_notice, parent, false),
 ) {
     private val binding = ItemNoticeBinding.bind(itemView)
+
+    init {
+        binding.root.setOnClickListener { onItemClick(adapterPosition) }
+    }
 
     fun onBind(noticeItem: NoticeUIModel) {
         binding.notice = noticeItem
