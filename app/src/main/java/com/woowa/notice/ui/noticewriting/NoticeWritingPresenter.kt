@@ -3,9 +3,11 @@ package com.woowa.notice.ui.noticewriting
 import com.woowa.notice.domain.Article
 import com.woowa.notice.domain.ExistArticle
 import com.woowa.notice.domain.Writer
+import com.woowa.notice.mapper.toDomain
 import com.woowa.notice.mapper.toUIModel
 import com.woowa.notice.repository.NoticeDetailRepository
 import com.woowa.notice.repository.NoticeWritingRepository
+import com.woowa.notice.uimodel.ImageUIModel
 
 class NoticeWritingPresenter(
     private val view: NoticeWritingContract.View,
@@ -14,12 +16,13 @@ class NoticeWritingPresenter(
 ) : NoticeWritingContract.Presenter {
     private var isExistArticle: Boolean = false
     private lateinit var existArticle: ExistArticle
+    private lateinit var images: MutableList<ImageUIModel>
 
     override fun submitPost(id: Long, title: String, description: String) {
         if (isExistArticle) {
             noticeWritingRepository.updateNotice(
                 id,
-                ExistArticle(title, description, existArticle.images),
+                ExistArticle(title, description, images.map { it.toDomain() }.toList()),
                 onSuccess = { },
                 onFailure = {
                     throw IllegalStateException("게시물 처리 실패")
@@ -27,7 +30,7 @@ class NoticeWritingPresenter(
             )
         } else {
             noticeWritingRepository.postNotice(
-                Article(title, description, Writer("로피", ""), emptyList()),
+                Article(title, description, Writer("로피", ""), images.map { it.toDomain() }.toList()),
                 onSuccess = { },
                 onFailure = {
                     throw IllegalStateException("게시물 처리 실패")
@@ -37,6 +40,11 @@ class NoticeWritingPresenter(
     }
 
     override fun submitPhoto() {
+    }
+
+    override fun removePhoto(image: ImageUIModel) {
+        images.remove(image)
+        view.updateImageView(images.toList())
     }
 
     override fun loadPost(id: Long) {
@@ -52,6 +60,7 @@ class NoticeWritingPresenter(
                 view.setViewContents(
                     existArticle.toUIModel()
                 )
+                images = notice.images.map { it.toUIModel() }.toMutableList()
             },
             onFailure = {
             },
