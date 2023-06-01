@@ -18,7 +18,6 @@
             android:name=".ui.noticewriting.NoticeWritingActivity"
             android:exported="true"
             android:theme="@style/Theme.Notice.NoActionBar" />
-
         <activity
             android:name=".ui.noticedetail.NoticeDetailActivity"
             android:exported="false"
