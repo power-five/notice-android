@@ -13,7 +13,7 @@ class NoticeDetailPresenter(
         repository.getNotice(
             id,
             onSuccess = { view.setNoticeDetail(it.toUIModel()) },
-            onFailure = {},
+            onFailure = { throw IllegalArgumentException("상세보기를 실패했습니다.") },
         )
     }
 
@@ -21,7 +21,7 @@ class NoticeDetailPresenter(
         repository.deleteNotice(
             id,
             onSuccess = { },
-            onFailure = { },
+            onFailure = { throw IllegalArgumentException("삭제를 실패했습니다.") },
         )
     }
 }
