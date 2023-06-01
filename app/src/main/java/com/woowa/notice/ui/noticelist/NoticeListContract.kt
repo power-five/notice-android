@@ -1,10 +1,10 @@
 package com.woowa.notice.ui.noticelist
 
-import com.woowa.notice.uimodel.NoticeUIModel
+import com.woowa.notice.uimodel.NoticeListUIModel
 
 interface NoticeListContract {
     interface View {
-        fun initRecyclerView(noticeItems: List<NoticeUIModel>)
+        fun initRecyclerView(notices: NoticeListUIModel)
     }
 
     interface Presenter {
