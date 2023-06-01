@@ -1,10 +1,8 @@
 package com.woowa.notice.uimodel
 
-data class NoticeUIModel(
-    val noticeId: Long,
+data class ArticleUIModel(
     val title: String,
     val description: String,
     val writer: WriterUIModel,
-    val images: List<ImageUIModel>,
-    val createdAt: String,
+    val images: List<ImageUIModel>
 )
