@@ -26,7 +26,6 @@ class NoticeWritingActivity : AppCompatActivity(), NoticeWritingContract.View {
             presenter.addPhoto(uri.toString())
         }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNoticeWritingBinding.inflate(layoutInflater)
