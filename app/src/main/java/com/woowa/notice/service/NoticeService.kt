@@ -1,13 +1,11 @@
 package com.woowa.notice.service
 
+import com.woowa.notice.dto.ArticleDTO
+import com.woowa.notice.dto.ExistArticleDTO
 import com.woowa.notice.dto.NoticeDTO
 import com.woowa.notice.dto.NoticeListDTO
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface NoticeService {
 
@@ -26,6 +24,12 @@ interface NoticeService {
 
     @POST("/notice")
     fun postNotice(
-        @Body notice: NoticeDTO,
-    )
+        @Body article: ArticleDTO,
+    ): Call<Unit>
+
+    @PUT("/notice/{noticeId}")
+    fun putNotice(
+        @Path("noticeId") noticeId: Long,
+        @Body article: ExistArticleDTO
+    ): Call<Unit>
 }
