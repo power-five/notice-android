@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="notice"
+            type="com.woowa.notice.uimodel.NoticeUIModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -78,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/tv_writing_title"
                 android:textSize="28sp"
+                android:text="@{notice.title}"
                 android:privateImeOptions="defaultInputmode=korean"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -88,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:padding="5dp"
+                android:text="@{notice.description}"
                 android:privateImeOptions="defaultInputmode=korean"
                 app:layout_constraintTop_toBottomOf="@id/et_title"
                 app:layout_constraintStart_toStartOf="parent"
