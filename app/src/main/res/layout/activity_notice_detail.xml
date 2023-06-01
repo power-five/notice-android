@@ -38,7 +38,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:scaleType="fitCenter"
-
+            app:ImagesBinding="@{notice.writer.image}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail" />
 
@@ -52,6 +52,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/iv_writer_img"
             app:layout_constraintTop_toTopOf="@+id/iv_writer_img"
+            android:text = "@{notice.writer.nickname}"
             tools:text="레아" />
 
         <TextView
@@ -61,6 +62,7 @@
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/tv_writer_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_writer_name"
+            android:text="@{notice.createdAt}"
             tools:text="2023/05/07 12:00" />
 
         <TextView

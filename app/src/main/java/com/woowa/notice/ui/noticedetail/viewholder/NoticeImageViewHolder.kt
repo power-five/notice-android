@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.woowa.notice.databinding.ItemNoticeImgBinding
+import com.woowa.notice.uimodel.ImageUIModel
 
 class NoticeImageViewHolder private constructor(
     private val binding: ItemNoticeImgBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(image: String) {
-        binding.noticeImg = image
+    fun bind(image: ImageUIModel) {
+        binding.noticeImg = image.url
     }
 
     companion object {

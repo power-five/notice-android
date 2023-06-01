@@ -9,7 +9,7 @@ import com.woowa.notice.R
 import io.noties.markwon.Markwon
 
 @BindingAdapter("ImagesBinding")
-fun setNoticeImage(view: ImageView, url: String) {
+fun setNoticeImage(view: ImageView, url: String?) {
     Glide.with(view.context)
         .load(url)
         .error(R.drawable.ic_launcher_foreground)
@@ -19,7 +19,9 @@ fun setNoticeImage(view: ImageView, url: String) {
 }
 
 @BindingAdapter("NoticeBinding")
-fun setNoticeText(view: TextView, text: String) {
+fun setNoticeText(view: TextView, text: String?) {
     val markdown = Markwon.create(view.context)
-    markdown.setMarkdown(view, text)
+    if (text != null) {
+        markdown.setMarkdown(view, text)
+    }
 }
