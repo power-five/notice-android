@@ -11,7 +11,7 @@ class NoticeDetailRepositoryImpl : NoticeDetailRepository {
         onSuccess: (Notice) -> Unit,
         onFailure: (Exception) -> Unit,
     ) {
-        RetrofitClient.noticeService.getNotice(1).enqueue(
+        RetrofitClient.noticeService.getNotice(id).enqueue(
             createResponseCallback(onSuccess = {
                 onSuccess(it.toDomain())
             }, onFailure),
