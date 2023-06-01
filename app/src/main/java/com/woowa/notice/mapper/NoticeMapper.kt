@@ -10,7 +10,7 @@ fun Notice.toUIModel(): NoticeUIModel {
         title = this.title,
         description = this.description,
         writer = this.writer.toUIModel(),
-        images = this.images,
+        images = this.images.map { it.toUIModel() },
         createdAt = this.createdAt,
     )
 }
@@ -21,7 +21,7 @@ fun NoticeUIModel.toDomain(): Notice {
         title = this.title,
         description = this.description,
         writer = this.writer.toDomain(),
-        images = this.images,
+        images = this.images.map { it.toDomain() },
         createdAt = this.createdAt,
     )
 }
@@ -32,7 +32,7 @@ fun NoticeDTO.toDomain(): Notice {
         title = this.title,
         description = this.description,
         writer = this.writer.toDomain(),
-        images = this.images,
+        images = this.images.map { it.toDomain() },
         createdAt = this.createdAt,
     )
 }

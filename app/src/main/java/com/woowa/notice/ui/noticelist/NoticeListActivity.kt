@@ -51,7 +51,6 @@ class NoticeListActivity : AppCompatActivity(), NoticeListContract.View {
         )
     }
 
-
     private fun showNoticeDetail(id: Long) {
         val intent = NoticeDetailActivity.newIntent(this, id)
         startActivity(intent)

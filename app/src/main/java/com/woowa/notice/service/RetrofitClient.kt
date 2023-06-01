@@ -24,7 +24,6 @@ object RetrofitClient {
     private fun getRetrofit() = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
-        .client(okHttpClient)
         .build()
 
     private val instance: Retrofit

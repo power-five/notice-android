@@ -10,20 +10,20 @@ import retrofit2.http.Path
 
 interface NoticeService {
 
-    @GET("notice")
+    @GET("/notice")
     fun getNotices(): Call<List<NoticeDTO>>
 
-    @GET("notice/{noticeId}")
+    @GET("/notice/{noticeId}")
     fun getNotice(
         @Path("noticeId") noticeId: Long,
     ): Call<NoticeDTO>
 
-    @DELETE("notice/{noticeId}")
+    @DELETE("/notice/{noticeId}")
     fun deleteNotice(
         @Path("noticeId") noticeId: Long,
     ): Call<String>
 
-    @POST("notice")
+    @POST("/notice")
     fun postNotice(
         @Body notice: NoticeDTO,
     )

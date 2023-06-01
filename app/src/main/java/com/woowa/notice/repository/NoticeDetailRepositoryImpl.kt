@@ -5,8 +5,6 @@ import com.woowa.notice.mapper.toDomain
 import com.woowa.notice.service.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.Response
-import java.io.IOException
 
 class NoticeDetailRepositoryImpl : NoticeDetailRepository {
     override fun getNotice(
@@ -14,14 +12,10 @@ class NoticeDetailRepositoryImpl : NoticeDetailRepository {
         onSuccess: (Notice) -> Unit,
         onFailure: (Exception) -> Unit,
     ) {
-        RetrofitClient.noticeService.getNotice(id).enqueue(
-            createResponseCallback(
-                onSuccess = { notice ->
-                    val noticeDomain = notice.toDomain()
-                    onSuccess(noticeDomain)
-                },
-                onFailure = onFailure,
-            ),
+        RetrofitClient.noticeService.getNotice(1).enqueue(
+            createResponseCallback(onSuccess = {
+                onSuccess(it.toDomain())
+            }, onFailure),
         )
     }
 
@@ -39,9 +33,9 @@ class NoticeDetailRepositoryImpl : NoticeDetailRepository {
         crossinline onFailure: (Exception) -> Unit,
     ): Callback<T> {
         return object : Callback<T> {
-            override fun onResponse(call: Call<T>, response: Response<T>) {
+            override fun onResponse(call: Call<T>, response: retrofit2.Response<T>) {
                 val responseBody = response.body()
-                if (response.isSuccessful && responseBody != null) {
+                if (responseBody != null) {
                     onSuccess(responseBody)
                 } else {
                     onFailure(Exception("Response unsuccessful"))
@@ -49,7 +43,7 @@ class NoticeDetailRepositoryImpl : NoticeDetailRepository {
             }
 
             override fun onFailure(call: Call<T>, t: Throwable) {
-                onFailure(IOException("Error getting response $t"))
+                onFailure(Exception("Response unsuccessful"))
             }
         }
     }
