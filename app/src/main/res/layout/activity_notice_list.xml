@@ -18,12 +18,11 @@
             tools:layout_editor_absoluteX="168dp">
 
             <TextView
-                android:id="@+id/tv_list"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@color/theme_point_color_green"
                 android:gravity="center"
-                android:text="글 상세보기"
+                android:text="@string/tb_notice_list"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 

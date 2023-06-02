@@ -25,7 +25,7 @@
             android:layout_height="60dp"
             android:background="@color/theme_point_color_green"
             android:gravity="center"
-            android:text="글 상세보기"
+            android:text="@string/tv_notice_detail"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintTop_toTopOf="parent"
