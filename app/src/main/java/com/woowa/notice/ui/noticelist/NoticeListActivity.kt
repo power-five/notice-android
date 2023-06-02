@@ -9,6 +9,7 @@ import com.woowa.notice.databinding.ActivityNoticeListBinding
 import com.woowa.notice.repository.NoticeListRepositoryImpl
 import com.woowa.notice.ui.noticedetail.NoticeDetailActivity
 import com.woowa.notice.ui.noticelist.adapter.NoticeListAdapter
+import com.woowa.notice.ui.noticewriting.NoticeWritingActivity
 import com.woowa.notice.uimodel.NoticeListUIModel
 
 class NoticeListActivity : AppCompatActivity(), NoticeListContract.View {
@@ -41,7 +42,7 @@ class NoticeListActivity : AppCompatActivity(), NoticeListContract.View {
 
     private fun setAddNoticeButtonListener() {
         binding.btnAddNotice.setOnClickListener {
-            // TODO: 공지사항 추가 화면으로 이동
+            startActivity(NoticeWritingActivity.newIntent(this, -1))
             Toast.makeText(this, "공지사항 추가 화면으로 이동", Toast.LENGTH_SHORT).show()
         }
     }

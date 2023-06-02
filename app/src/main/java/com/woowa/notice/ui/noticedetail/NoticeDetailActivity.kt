@@ -3,11 +3,13 @@ package com.woowa.notice.ui.noticedetail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.woowa.notice.databinding.ActivityNoticeDetailBinding
 import com.woowa.notice.repository.NoticeDetailRepositoryImpl
 import com.woowa.notice.ui.noticedetail.contract.NoticeDetailContract
 import com.woowa.notice.ui.noticedetail.contract.presenter.NoticeDetailPresenter
+import com.woowa.notice.ui.noticewriting.NoticeWritingActivity
 import com.woowa.notice.uimodel.ImageUIModel
 import com.woowa.notice.uimodel.NoticeUIModel
 
@@ -33,7 +35,7 @@ class NoticeDetailActivity : AppCompatActivity(), NoticeDetailContract.View, Not
         binding.rvNoticeImg.adapter = NoticeImageAdapter(images)
     }
     override fun onNoticeChangeClick(id: Long) {
-        // startActivity(NoticeChangeActivity.newIntent(this, id))
+        startActivity(NoticeWritingActivity.newIntent(this, id))
     }
 
     override fun onNoticeDeleteClick(id: Long) {
