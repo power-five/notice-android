@@ -25,3 +25,11 @@ fun setNoticeText(view: TextView, text: String?) {
         markdown.setMarkdown(view, text)
     }
 }
+
+@BindingAdapter("NoticePreviewBinding")
+fun setNoticePreviewText(view: TextView, text: String?) {
+    val markdown = Markwon.create(view.context)
+    if (text != null) {
+        view.text = markdown.toMarkdown(text).toString()
+    }
+}
