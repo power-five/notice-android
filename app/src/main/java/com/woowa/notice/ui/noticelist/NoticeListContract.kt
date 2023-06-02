@@ -4,7 +4,7 @@ import com.woowa.notice.uimodel.NoticeListUIModel
 
 interface NoticeListContract {
     interface View {
-        fun initRecyclerView(notices: NoticeListUIModel)
+        fun setNoticeList(notices: NoticeListUIModel)
     }
 
     interface Presenter {
