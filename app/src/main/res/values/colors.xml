@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="text_color_black">#000000</color>
+    <color name="theme_point_color_green">#297563</color>
 </resources>

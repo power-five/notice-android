@@ -8,6 +8,27 @@
         android:layout_height="match_parent"
         tools:context=".ui.noticelist.NoticeListActivity">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_notice_list"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#297563"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="168dp">
+
+            <TextView
+                android:id="@+id/tv_list"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/theme_point_color_green"
+                android:gravity="center"
+                android:text="글 상세보기"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_notice_list"
             android:layout_width="0dp"
@@ -16,7 +37,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_notice_list"
             tools:listitem="@layout/item_notice" />
 
         <androidx.appcompat.widget.AppCompatImageButton

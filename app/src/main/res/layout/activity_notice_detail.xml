@@ -23,7 +23,7 @@
             android:id="@+id/tv_detail"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="#297563"
+            android:background="@color/theme_point_color_green"
             android:gravity="center"
             android:text="글 상세보기"
             android:textColor="@color/white"
