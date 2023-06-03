@@ -30,6 +30,6 @@ interface NoticeService {
     @PUT("/notice/{noticeId}")
     fun putNotice(
         @Path("noticeId") noticeId: Long,
-        @Body article: ExistArticleDTO
+        @Body article: ExistArticleDTO,
     ): Call<Unit>
 }
