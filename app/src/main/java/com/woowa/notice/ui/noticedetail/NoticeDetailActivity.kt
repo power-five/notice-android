@@ -3,7 +3,6 @@ package com.woowa.notice.ui.noticedetail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.woowa.notice.databinding.ActivityNoticeDetailBinding
 import com.woowa.notice.repository.NoticeDetailRepositoryImpl
@@ -24,6 +23,7 @@ class NoticeDetailActivity : AppCompatActivity(), NoticeDetailContract.View, Not
 
         presenter = NoticeDetailPresenter(this, NoticeDetailRepositoryImpl())
         presenter.fetchNoticeDetail(intent.getLongExtra(KEY_NOTICE_ID, 0))
+        binding.listener = this
     }
 
     override fun setNoticeDetail(notice: NoticeUIModel) {
@@ -34,6 +34,7 @@ class NoticeDetailActivity : AppCompatActivity(), NoticeDetailContract.View, Not
     private fun setNoticeImages(images: List<ImageUIModel>) {
         binding.rvNoticeImg.adapter = NoticeImageAdapter(images)
     }
+
     override fun onNoticeChangeClick(id: Long) {
         startActivity(NoticeWritingActivity.newIntent(this, id))
     }
