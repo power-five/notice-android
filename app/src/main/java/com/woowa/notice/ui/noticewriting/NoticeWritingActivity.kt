@@ -41,7 +41,7 @@ class NoticeWritingActivity : AppCompatActivity(), NoticeWritingContract.View {
         presenter = NoticeWritingPresenter(
             view = this,
             noticeDetailRepository = NoticeDetailRepositoryImpl(),
-            noticeWritingRepository = NoticeWritingRepositoryImpl()
+            noticeWritingRepository = NoticeWritingRepositoryImpl(),
         )
     }
 
@@ -52,7 +52,7 @@ class NoticeWritingActivity : AppCompatActivity(), NoticeWritingContract.View {
                 override fun onClickRemove(imageUIModel: ImageUIModel) {
                     presenter.removePhoto(imageUIModel)
                 }
-            }
+            },
         )
         binding.rvImagePreviews.adapter = adapter
     }
@@ -71,7 +71,7 @@ class NoticeWritingActivity : AppCompatActivity(), NoticeWritingContract.View {
             presenter.submitPost(
                 noticeId,
                 binding.etTitle.text.toString(),
-                binding.etDescription.text.toString()
+                binding.etDescription.text.toString(),
             )
             finish()
         }

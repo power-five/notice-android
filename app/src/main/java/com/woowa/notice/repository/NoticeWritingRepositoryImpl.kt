@@ -13,7 +13,7 @@ class NoticeWritingRepositoryImpl : NoticeWritingRepository {
     override fun postNotice(
         article: Article,
         onSuccess: (Unit) -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
     ) {
         RetrofitClient.noticeService
             .postNotice(
@@ -21,10 +21,11 @@ class NoticeWritingRepositoryImpl : NoticeWritingRepository {
                     article.title,
                     article.description,
                     1,
-                    article.images.map { ImageDTO(it.url) })
+                    article.images.map { ImageDTO(it.url) },
+                ),
             )
             .enqueue(
-                createResponseCallback(onSuccess, onFailure)
+                createResponseCallback(onSuccess, onFailure),
             )
     }
 
@@ -32,7 +33,7 @@ class NoticeWritingRepositoryImpl : NoticeWritingRepository {
         id: Long,
         existArticle: ExistArticle,
         onSuccess: (Unit) -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
     ) {
         RetrofitClient.noticeService
             .putNotice(
@@ -40,10 +41,11 @@ class NoticeWritingRepositoryImpl : NoticeWritingRepository {
                 ExistArticleDTO(
                     existArticle.title,
                     existArticle.description,
-                    existArticle.images.map { ImageDTO(it.url) })
+                    existArticle.images.map { ImageDTO(it.url) },
+                ),
             )
             .enqueue(
-                createResponseCallback(onSuccess, onFailure)
+                createResponseCallback(onSuccess, onFailure),
             )
     }
 }

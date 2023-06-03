@@ -6,8 +6,8 @@ import com.woowa.notice.uimodel.ImageUIModel
 
 class NoticeWritingAdapter(
     private var images: List<ImageUIModel>,
-    private val noticeWritingClickListener: NoticeWritingClickListener
-): RecyclerView.Adapter<NoticeWritingViewHolder>() {
+    private val noticeWritingClickListener: NoticeWritingClickListener,
+) : RecyclerView.Adapter<NoticeWritingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoticeWritingViewHolder {
         return NoticeWritingViewHolder(parent, noticeWritingClickListener)

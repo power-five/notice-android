@@ -4,5 +4,5 @@ data class ArticleDTO(
     val title: String,
     val description: String,
     val writerId: Int,
-    val images: List<ImageDTO>
+    val images: List<ImageDTO>,
 )
