@@ -9,9 +9,9 @@ import com.woowa.notice.uimodel.ImageUIModel
 
 class NoticeWritingViewHolder(
     parent: ViewGroup,
-    private val noticeWritingClickListener: NoticeWritingClickListener
-): RecyclerView.ViewHolder(
-    LayoutInflater.from(parent.context).inflate(R.layout.item_image_preview, parent, false)
+    private val noticeWritingClickListener: NoticeWritingClickListener,
+) : RecyclerView.ViewHolder(
+    LayoutInflater.from(parent.context).inflate(R.layout.item_image_preview, parent, false),
 ) {
     private val binding = ItemImagePreviewBinding.bind(itemView)
     private lateinit var image: ImageUIModel
