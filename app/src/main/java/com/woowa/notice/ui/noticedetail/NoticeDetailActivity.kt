@@ -22,6 +22,11 @@ class NoticeDetailActivity : AppCompatActivity(), NoticeDetailContract.View, Not
         setContentView(binding.root)
 
         presenter = NoticeDetailPresenter(this, NoticeDetailRepositoryImpl())
+        binding.listener = this
+    }
+
+    override fun onStart() {
+        super.onStart()
         presenter.fetchNoticeDetail(intent.getLongExtra(KEY_NOTICE_ID, 0))
         binding.listener = this
     }
