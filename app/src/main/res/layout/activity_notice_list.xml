@@ -39,13 +39,12 @@
             app:layout_constraintTop_toBottomOf="@id/tb_notice_list"
             tools:listitem="@layout/item_notice" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ImageView
             android:id="@+id/btn_add_notice"
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="0dp"
             android:layout_margin="20dp"
-            android:background="@android:color/transparent"
-            android:scaleType="centerCrop"
+            android:background="@drawable/bg_oval_shadow"
             android:src="@drawable/ic_add_notice"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1"
