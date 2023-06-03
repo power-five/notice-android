@@ -18,7 +18,6 @@ fun <T> createResponseCallback(
         }
 
         override fun onFailure(call: Call<T>, t: Throwable) {
-            println("Response unsuccessful: ${t.message}")
             onFailure(Exception("Response unsuccessful"))
         }
     }

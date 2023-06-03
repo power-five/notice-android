@@ -1,5 +1,6 @@
 package com.woowa.notice.ui.noticelist.adapter
 
+import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.woowa.notice.uimodel.NoticeListUIModel
@@ -20,8 +21,9 @@ class NoticeListAdapter(
         holder.onBind(noticeItems.getNotice(position))
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateNoticeList(noticeItems: NoticeListUIModel) {
         this.noticeItems = noticeItems
-        notifyItemRangeChanged(0, noticeItems.size)
+        notifyDataSetChanged()
     }
 }
