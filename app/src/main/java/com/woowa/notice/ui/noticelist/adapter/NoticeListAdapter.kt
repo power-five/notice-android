@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.woowa.notice.uimodel.NoticeListUIModel
 
 class NoticeListAdapter(
-    private val noticeItems: NoticeListUIModel,
+    private var noticeItems: NoticeListUIModel,
     private val onItemClick: (Long) -> Unit,
 ) : RecyclerView.Adapter<NoticeListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoticeListViewHolder {
@@ -18,5 +18,10 @@ class NoticeListAdapter(
 
     override fun onBindViewHolder(holder: NoticeListViewHolder, position: Int) {
         holder.onBind(noticeItems.getNotice(position))
+    }
+
+    fun updateNoticeList(noticeItems: NoticeListUIModel) {
+        this.noticeItems = noticeItems
+        notifyItemRangeChanged(0, noticeItems.size)
     }
 }

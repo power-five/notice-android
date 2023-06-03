@@ -10,11 +10,11 @@ class NoticeListPresenter(
     override fun getNoticeList() {
         repository.getAllNotices(
             onSuccess = { notices ->
-                view.initRecyclerView(notices.toUIModel())
+                view.setNoticeList(notices.toUIModel())
             },
             onFailure = {
                 throw IllegalArgumentException("공지사항 목록을 불러오는데 실패했습니다.")
-            }
+            },
         )
     }
 }

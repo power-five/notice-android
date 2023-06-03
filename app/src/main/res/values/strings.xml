@@ -6,4 +6,6 @@
     <string name="tv_posting">완료</string>
     <string name="tv_writing_title">제목</string>
     <string name="tv_writing_detail">내용을 입력하세요</string>
+    <string name="tv_notice_detail">글 상세보기</string>
+    <string name="tb_notice_list">공지사항</string>
 </resources>

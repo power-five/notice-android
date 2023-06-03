@@ -1,10 +1,10 @@
 package com.woowa.notice.ui.noticelist
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.woowa.notice.databinding.ActivityNoticeListBinding
 import com.woowa.notice.repository.NoticeListRepositoryImpl
 import com.woowa.notice.ui.noticedetail.NoticeDetailActivity
@@ -29,21 +29,30 @@ class NoticeListActivity : AppCompatActivity(), NoticeListContract.View {
         setAddNoticeButtonListener()
     }
 
-    override fun initRecyclerView(notices: NoticeListUIModel) {
-        binding.rvNoticeList.adapter = NoticeListAdapter(notices) { id ->
-            showNoticeDetail(id)
-        }
+    override fun onStart() {
+        super.onStart()
+        updateNoticeList()
+    }
+
+    override fun setNoticeList(notices: NoticeListUIModel) {
+        (binding.rvNoticeList.adapter as NoticeListAdapter).updateNoticeList(notices)
     }
 
     private fun initNoticeList() {
-        presenter.getNoticeList()
+        binding.rvNoticeList.adapter = NoticeListAdapter(NoticeListUIModel(emptyList())) { id ->
+            showNoticeDetail(id)
+        }
+        setListAnimator()
         setRecyclerViewDivider()
+    }
+
+    private fun updateNoticeList() {
+        presenter.getNoticeList()
     }
 
     private fun setAddNoticeButtonListener() {
         binding.btnAddNotice.setOnClickListener {
             startActivity(NoticeWritingActivity.newIntent(this, -1))
-            Toast.makeText(this, "공지사항 추가 화면으로 이동", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -51,6 +60,13 @@ class NoticeListActivity : AppCompatActivity(), NoticeListContract.View {
         binding.rvNoticeList.addItemDecoration(
             DividerItemDecoration(this, LinearLayoutManager.VERTICAL),
         )
+    }
+
+    private fun setListAnimator() {
+        val animator = binding.rvNoticeList.itemAnimator
+        if (animator is SimpleItemAnimator) {
+            animator.supportsChangeAnimations = false
+        }
     }
 
     private fun showNoticeDetail(id: Long) {
