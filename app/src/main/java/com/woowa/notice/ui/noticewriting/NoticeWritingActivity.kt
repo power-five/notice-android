@@ -3,6 +3,7 @@ package com.woowa.notice.ui.noticewriting
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,8 +22,7 @@ class NoticeWritingActivity : AppCompatActivity(), NoticeWritingContract.View {
 
     private val galleryLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-            val inputStream = contentResolver.openInputStream(uri!!)
-            inputStream?.close()
+            //convertUriToUrl(uri.toString())
             presenter.addPhoto(uri.toString())
         }
 
@@ -79,7 +79,10 @@ class NoticeWritingActivity : AppCompatActivity(), NoticeWritingContract.View {
             finish()
         }
         binding.ivImageAddButton.setOnClickListener {
-            galleryLauncher.launch("image/*")
+            //galleryLauncher.launch("image/*")
+            val images = binding.etImages.text.toString().replace(" ", "").split(",")
+            images.forEach { presenter.addPhoto(it) }
+            binding.etImages.text.clear()
         }
     }
 
